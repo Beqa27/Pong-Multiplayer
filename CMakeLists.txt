@@ -10,7 +10,7 @@ pkg_check_modules(SDL2_IMAGE REQUIRED SDL2_image)
 
 # Your main file(s)
 add_executable(Pong src/main.cpp
-
+ src/ball.cpp
 )
 
 # Include directories

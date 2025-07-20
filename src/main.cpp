@@ -1,14 +1,13 @@
 #define SDL_MAIN_HANDLED
 #include "../header/includes.h"
+#include "../header/variables.h"
 
-// #define SDL_MAIN_HANDLED
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+
 int main()
 {
     // I IMPORTED CLASS SO CODE LOOKS OVERALL CLEANER
     SDLApp app("Space Invaders", WINDOW_WIDTH, WINDOW_HEIGHT);
-
+    Ball ball = Ball(app.renderer, ballRect, ballSpeed, ballImagePath);
     SDL_Event e;
     bool running = true;
 
@@ -24,13 +23,16 @@ int main()
 
         // UPDATE LOOP
         const Uint8 *keystates = SDL_GetKeyboardState(nullptr);
- 
+        ball.Update(screenWidth, screenHeight, gameRunning);
         
 
         // DRAW STUFF HERE
         SDL_SetRenderDrawColor(app.renderer, 0, 0, 0, 0);
+        
+
 
         SDL_RenderClear(app.renderer);
+        ball.Draw(app.renderer);
 
         SDL_RenderPresent(app.renderer);
 

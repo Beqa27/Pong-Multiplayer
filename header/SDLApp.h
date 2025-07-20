@@ -8,6 +8,7 @@ public:
 
     SDLApp(const char* title, int width, int height) {
         SDL_Init(SDL_INIT_VIDEO);
+        IMG_Init(IMG_INIT_PNG);
         window = SDL_CreateWindow(title,
                                   SDL_WINDOWPOS_CENTERED,
                                   SDL_WINDOWPOS_CENTERED,
@@ -19,6 +20,7 @@ public:
     ~SDLApp() {
         if (renderer) SDL_DestroyRenderer(renderer);
         if (window) SDL_DestroyWindow(window);
+        IMG_Quit();
         SDL_Quit();
     }
 
