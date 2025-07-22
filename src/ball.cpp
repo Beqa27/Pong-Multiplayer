@@ -35,12 +35,10 @@ void Ball::Draw(SDL_Renderer* renderer) {
     }
 }
 
-void Ball::Update(int screenWidth, int screenHeight, bool& gameRunning) {
-    // Move ball
+void Ball::Update(int screenWidth, int screenHeight, bool& gameRunning, const SDL_Rect& paddleLeftRect, const SDL_Rect& paddleRightRect) {
     ballRect.x += static_cast<int>(dx * speed);
     ballRect.y += static_cast<int>(dy * speed);
 
-    // Bounce only on top and bottom
     if (ballRect.y <= 0) {
         ballRect.y = 0;
         dy = -dy;
@@ -50,14 +48,24 @@ void Ball::Update(int screenWidth, int screenHeight, bool& gameRunning) {
         dy = -dy;
     }
 
-    // If ball touches left or right edge, game over or reset
     if (ballRect.x <= 0) {
-        gameRunning = false;  // left side lost
+        gameRunning = false;
         SDL_Log("Game Over! Right player wins!");
     }
     else if (ballRect.x + ballRect.w >= screenWidth) {
-        gameRunning = false;  // right side lost
+        gameRunning = false;
         SDL_Log("Game Over! Left player wins!");
     }
+
+    // Paddle bounce logic
+    if (SDL_HasIntersection(&ballRect, &paddleLeftRect)) {
+        ballRect.x = paddleLeftRect.x + paddleLeftRect.w;  // Prevent sticking
+        dx = -dx;
+    }
+    else if (SDL_HasIntersection(&ballRect, &paddleRightRect)) {
+        ballRect.x = paddleRightRect.x - ballRect.w;  // Prevent sticking
+        dx = -dx;
+    }
 }
+
 

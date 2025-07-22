@@ -3,3 +3,4 @@
 #include "SDLApp.h"
 #include "ball.h"
 #include <cmath>
+#include "paddle.h"
