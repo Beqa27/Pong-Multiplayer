@@ -4,3 +4,4 @@
 #include "ball.h"
 #include <cmath>
 #include "paddle.h"
+#include <SDL2/SDL_ttf.h>
