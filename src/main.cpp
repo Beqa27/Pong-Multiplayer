@@ -30,10 +30,14 @@ int main()
         paddleRight.update(keystates);
 
         // DRAW STUFF HERE
+
         SDL_SetRenderDrawColor(app.renderer, 0, 0, 0, 0);
 
         SDL_RenderClear(app.renderer);
+        SDL_SetRenderDrawColor(app.renderer, 150, 150, 150, 255);
+        SDL_RenderDrawLine(app.renderer, screenWidth / 2, 0, screenWidth / 2, screenHeight);
         ball.Draw(app.renderer);
+
         paddleLeft.draw(app.renderer);
         paddleRight.draw(app.renderer);
 
