@@ -15,7 +15,5 @@ public:
 
     void Draw(SDL_Renderer* renderer);
     void Update(int screenWidth, int screenHeight, bool& gameRunning, const SDL_Rect& paddleLeftRect, const SDL_Rect& paddleRightRect);
-    
-    // ADDED: Reset function declaration
-    void Reset();
+    void reset();
 };

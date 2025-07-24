@@ -31,7 +31,7 @@ Ball::~Ball() {
 }
 
 
-void Ball::Reset() {
+void Ball::reset() {
     // Reset ball to the center
     ballRect.x = WINDOW_WIDTH / 2 - ballRect.w / 2;
     ballRect.y = WINDOW_HEIGHT / 2 - ballRect.h / 2;
@@ -73,13 +73,13 @@ void Ball::Update(int screenWidth, int screenHeight, bool& gameRunning, const SD
 
         SDL_Log("Point for Player 2!");
         playerScore_2++;
-        Reset();
+        reset();
     }
     else if (ballRect.x + ballRect.w >= screenWidth) {
 
         SDL_Log("Point for Player 1!");
         playerScore_1++;
-        Reset();
+        reset();
     }
 
     // Paddle bounce logic
