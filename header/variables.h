@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include <string>
 
 // Screen stuff
 #define WINDOW_WIDTH 800
@@ -21,3 +22,15 @@ extern int screenHeight;
 
 extern SDL_Rect paddleLeft;
 extern SDL_Rect paddleRight;
+ 
+// Text stuff
+extern SDL_Rect txtSrcRect;
+extern SDL_Rect txtDstRect;
+
+
+// GamePlay
+extern int playerScore_1;
+extern int playerScore_2;
+
+extern std::string playerScoreToTxt_1;
+extern std::string playerScoreToTxt_2;

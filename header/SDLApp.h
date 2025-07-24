@@ -9,7 +9,7 @@ class SDLApp
 public:
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
-    TTF_Font *font = nullptr;  // move font here as a member
+    TTF_Font *font = nullptr;  
 
     SDLApp(const char *title, int width, int height)
     {
@@ -26,7 +26,7 @@ public:
             std::cerr << "TTF INIT ERROR: " << TTF_GetError() << std::endl;
         }
 
-        font = TTF_OpenFont("font/basic_square.ttf", 32);
+        font = TTF_OpenFont("font/basic_square_7_solid.ttf", 32);
         if (!font)
         {
             std::cerr << "TTF Open Font ERROR: " << TTF_GetError() << std::endl;

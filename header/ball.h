@@ -7,7 +7,6 @@ public:
     SDL_Texture* ballTex = nullptr;        
     SDL_Rect ballRect;
 
-  
     float dx;
     float dy;
 
@@ -15,7 +14,8 @@ public:
     ~Ball();
 
     void Draw(SDL_Renderer* renderer);
-
-    // Pass in paddles & game state so we can handle bouncing and game over
     void Update(int screenWidth, int screenHeight, bool& gameRunning, const SDL_Rect& paddleLeftRect, const SDL_Rect& paddleRightRect);
+    
+    // ADDED: Reset function declaration
+    void Reset();
 };

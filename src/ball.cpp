@@ -1,4 +1,5 @@
 #include "../header/includes.h"
+#include "../header/variables.h"
 
 Ball::Ball(SDL_Renderer* renderer, SDL_Rect ballRect, int speed, const char* ballSpritePath)
     : speed(speed), ballRect(ballRect)
@@ -29,6 +30,26 @@ Ball::~Ball() {
     }
 }
 
+
+void Ball::Reset() {
+    // Reset ball to the center
+    ballRect.x = WINDOW_WIDTH / 2 - ballRect.w / 2;
+    ballRect.y = WINDOW_HEIGHT / 2 - ballRect.h / 2;
+
+    dx = (rand() % 2 == 0) ? 1.0f : -1.0f;
+    dy = ((rand() % 200) / 100.0f - 1.0f); 
+
+    float length = std::sqrt(dx * dx + dy * dy);
+    if (length > 0) { 
+        dx /= length;
+        dy /= length;
+    } else {
+        dx = 1.0f;
+        dy = 0.0f;
+    }
+}
+
+
 void Ball::Draw(SDL_Renderer* renderer) {
     if (ballTex) {
         SDL_RenderCopy(renderer, ballTex, nullptr, &ballRect);
@@ -49,23 +70,25 @@ void Ball::Update(int screenWidth, int screenHeight, bool& gameRunning, const SD
     }
 
     if (ballRect.x <= 0) {
-        gameRunning = false;
-        SDL_Log("Game Over! Right player wins!");
+
+        SDL_Log("Point for Player 2!");
+        playerScore_2++;
+        Reset();
     }
     else if (ballRect.x + ballRect.w >= screenWidth) {
-        gameRunning = false;
-        SDL_Log("Game Over! Left player wins!");
+
+        SDL_Log("Point for Player 1!");
+        playerScore_1++;
+        Reset();
     }
 
     // Paddle bounce logic
     if (SDL_HasIntersection(&ballRect, &paddleLeftRect)) {
-        ballRect.x = paddleLeftRect.x + paddleLeftRect.w;  // Prevent sticking
+        ballRect.x = paddleLeftRect.x + paddleLeftRect.w;  
         dx = -dx;
     }
     else if (SDL_HasIntersection(&ballRect, &paddleRightRect)) {
-        ballRect.x = paddleRightRect.x - ballRect.w;  // Prevent sticking
+        ballRect.x = paddleRightRect.x - ballRect.w;  
         dx = -dx;
     }
 }
-
-
