@@ -5,3 +5,5 @@
 #include <cmath>
 #include "paddle.h"
 #include <SDL2/SDL_ttf.h>
+#include <SDL_net.h>
+#include "multiplayer.h"
